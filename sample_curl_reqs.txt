@@ -1,0 +1,53 @@
+###
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "bob",
+    "password": "password321"
+  }'
+###
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "alice", "password": "securepass"}'
+###
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "alice", "password": "securepass"}'
+###
+curl http://localhost:3000/items
+###
+curl "http://localhost:3000/items?status=lost&category=electronics"
+###
+curl -X POST http://localhost:3000/items \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Laptop Bag",
+    "description": "Black laptop bag left in library",
+    "status": "lost",
+    "category": "electronics",
+    "location": "Library",
+    "date": "2025-07-17",
+    "contactInfo": "alice@example.com",
+    "imageUrl": "https://example.com/image.png"
+  }'
+###
+curl -X PUT http://localhost:3000/items/1 \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Laptop Bag - Updated",
+    "description": "Found in library locker",
+    "status": "found",
+    "category": "electronics",
+    "location": "Library",
+    "date": "2025-07-17",
+    "contactInfo": "alice@example.com",
+    "imageUrl": "https://example.com/updated.png"
+  }'
+###
+curl http://localhost:3000/items/1
+###
+curl -X DELETE http://localhost:3000/items/1 \
+  -H "Authorization: Bearer $TOKEN"
+
